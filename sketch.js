@@ -1,3 +1,9 @@
+var array1 = [1,2,3,4,5];
+console.log(array1);
+console.log(array1[4]);
+var array2 = [[1,2,3],[4,5]];
+console.log(array2);
+console.log(array2[1][0]);
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
@@ -31,16 +37,13 @@ function setup(){
     box5 = new Box(810,160,70,70);
     log4 = new Log(760,120,150, PI/7);
     log5 = new Log(870,120,150, -PI/7);
-    bird = new Bird(100,100);
-    slingshot = new Slingshot(bird.body,{x:200,y:100});
+    bird = new Bird(150,80);
+    slingshot = new Slingshot(bird.body,{x:150,y:80});
 }
 
 function draw(){
     background(backgroundImage);
     Engine.update(engine);
-    console.log(box2.body.position.x);
-    console.log(box2.body.position.y);
-    console.log(box2.body.angle);
     box1.display();
     box2.display();
     ground.display();
@@ -65,4 +68,9 @@ function mouseDragged(){
 }
 function mouseReleased(){
     slingshot.fly()
+}
+function keyPressed(){
+    if(keyCode == 32){
+        slingshot.attach(bird.body);
+    }
 }
